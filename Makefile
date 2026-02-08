@@ -86,6 +86,9 @@ USE_CXXSTD=	c++17
 post-patch:
 	@${REINPLACE_CMD} -e '/LIBS="-lintl/s,-liconv,$$ICONV_LIBS,' \
 		${WRKSRC}/configure
+	# Ensure compatibility with newer Ruby versions by fixing deprecated "exists?" usages across source files
+	# Handle: File.exists?, FileTest.exists?, Dir.exists?, and variants like File::exists?
+	@${FIND} ${WRKSRC} -type f -exec ${REINPLACE_CMD} -e 's/File\.exists\?/File.exist?/g' -e 's/FileTest\.exists\?/FileTest.exist?/g' -e 's/Dir\.exists\?/Dir.exist?/g' -e 's/File::exists\?/File::exist?/g' -e 's/::File\.exists\?/::File.exist?/g' {} +
 
 post-configure-NLS-off:
 # https://github.com/mbunkus/mkvtoolnix/issues/1501
