@@ -65,7 +65,7 @@ NLS_CONFIGURE_WITH=	gettext
 
 QT5_DESC=	Build and install GUI application (Qt 5)
 QT5_USES=	desktop-file-utils qt:5 shared-mime-info qmake:no_env
-QT5_USE=	QT=buildtools_build,concurrent,core,dbus,declarative,gui,linguisttools_build,multimedia,network,widgets
+QT5_USE=	QT=buildtools_build,concurrent,core,dbus,declarative,gui,linguisttools:build,multimedia,network,widgets
 QT5_CONFIGURE_ENABLE=	qt
 QT5_LIB_DEPENDS=	libcmark.so:textproc/cmark
 QT5_BINARY_ALIAS=	qmake=${QMAKE} \
